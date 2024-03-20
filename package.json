@@ -1,0 +1,24 @@
+{
+  "name": "ts-postegres-google-authentication",
+  "version": "1.0.0",
+  "description": "App to control the user with Google Authentication ",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon index.ts"
+  },
+  "author": "Team one",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "nodemon": "^3.1.0"
+  }
+}
