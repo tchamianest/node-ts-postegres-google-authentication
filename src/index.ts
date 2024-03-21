@@ -1,16 +1,10 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import sequelize from "sequelize";
-import connectToDatabase from "./database/config/db";
- // Import the database connection function
-
-// Load environment variables from .env file
+import sequelizeConnection from "./database/config/db";
 dotenv.config();
-
 const app: Express = express();
 const port = process.env.PORT || 8000;
-
-connectToDatabase()
+sequelizeConnection.authenticate()
   .then(() => {
     console.log('Database connected successfully.');
     app.listen(port, () => {

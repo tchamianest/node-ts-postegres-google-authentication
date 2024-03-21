@@ -1,20 +1,18 @@
-import dotenv from 'dotenv';
 import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
 
-async function connectToDatabase() {
-  dotenv.config(); 
-  const sequelize = new Sequelize('process.env.DATABASE_URL', {
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false 
-      }
-    }
-  });
-  
-    await sequelize.authenticate();
-}
+dotenv.config();
 
-connectToDatabase();
-export default connectToDatabase;
+const db_uri = process.env.DATABASE_URL as string;
+
+const sequelizeConnection = new Sequelize(db_uri, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
+
+export default sequelizeConnection;

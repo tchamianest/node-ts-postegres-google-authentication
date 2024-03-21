@@ -1,49 +1,51 @@
-// models/User.ts
+import { DataTypes } from 'sequelize';
+import sequelizeConnection from '../config/db';
 
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
-
-interface UserAttributes {
-  googleId: string;
-  email: string;
-  displayName: string;
-  photoURL?: string | null;
-}
-
-interface UserCreationAttributes extends Optional<UserAttributes, 'googleId'> {}
-
-class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-  public googleId!: string;
-  public email!: string;
-  public displayName!: string;
-  public photoURL!: string | null;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-}
-
-export default (sequelize: Sequelize) => {
-  User.init({
-    googleId: {
-      type: DataTypes.STRING,
+const User = sequelizeConnection.define(
+  'User',
+  {
+    id: {
       allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
       unique: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+    },
+    firstname: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    lastname: {
+      allowNull: false,
+      type: DataTypes.STRING,
     },
     email: {
-      type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-    },
-    displayName: {
       type: DataTypes.STRING,
+    },
+    imageUrl: {
       allowNull: false,
-    },
-    photoURL: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
-  }, {
-    sequelize,
-    modelName: 'User', // change modelName from 'GoogleUser' to 'User'
-  });
+    googleId: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+  },
+  {
+    timestamps: true,
+    tableName: 'Users',
+    underscored: false,
+  }
+);
 
-  return User;
-};
+export default User;
