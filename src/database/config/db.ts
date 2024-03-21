@@ -1,3 +1,4 @@
+
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
@@ -14,5 +15,6 @@ const sequelizeConnection = new Sequelize(db_uri, {
     },
   },
 });
+
 
 export default sequelizeConnection;
