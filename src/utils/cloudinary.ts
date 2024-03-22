@@ -4,7 +4,9 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
 const uploadImage = async (imageData: Buffer): Promise<string> => {
+
   const base64Image = imageData.toString("base64");
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(
