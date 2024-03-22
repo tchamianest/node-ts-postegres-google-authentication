@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import User from "../database/models/User";
+import uploadImage from "../utils/cloudinary";
 
 export const getAllUsers = async (
   req: Request,
@@ -79,7 +80,6 @@ export const updateUser = async (
 
     const { firstname, lastname, imageUrl } = req.body;
     const body = req.body;
-    console.log(body);
 
     if (!firstname && !lastname && !imageUrl) {
       res.status(400).send({
@@ -92,10 +92,14 @@ export const updateUser = async (
       res.status(404).send({ error: "User not found" });
       return;
     }
+    let uploadedImage;
+    if (req.file) {
+      uploadedImage = await uploadImage(req.file.buffer);
+    }
 
     user.firstname = firstname || user.firstname;
     user.lastname = lastname || user.lastname;
-    user.imageUrl = imageUrl || user.imageUrl;
+    user.imageUrl = uploadedImage || user.imageUrl;
 
     await user.save();
 
