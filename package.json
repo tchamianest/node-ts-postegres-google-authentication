@@ -16,10 +16,14 @@
     "@types/node": "^20.11.30",
     "@types/pg": "^8.11.3",
     "@types/sequelize": "^4.28.20",
+    "@types/uuid": "^9.0.8",
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "@babel/core": "^7.24.3",
     "@babel/register": "^7.23.7",
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
     "babel": "^6.23.0",
     "body-parser": "^1.20.2",
     "cloudinary": "^2.0.3",
@@ -31,6 +35,7 @@
     "path": "^0.12.7",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.1"
+    "sequelize": "^6.37.1",
+    "uuid": "^9.0.1"
   }
 }
