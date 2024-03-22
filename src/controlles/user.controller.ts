@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import User from "../database/models/User";
 import uploadImage from "../utils/cloudinary";
+import updadeProfileNotifiacation from "../middlewares/email-noti";
 
 export const getAllUsers = async (
   req: Request,
@@ -103,7 +104,13 @@ export const updateUser = async (
 
     await user.save();
 
-    // call mailer function here
+    // console.log("THISSSSS", user.email);
+    const userData = {
+      name: "Tchami",
+      profile: "profile",
+    };
+    let email = user.email;
+    updadeProfileNotifiacation(userData, email);
 
     res.status(200).send({ user });
   } catch (error) {
